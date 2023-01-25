@@ -1,0 +1,286 @@
+check for account plan
+
+var item_default = "Default"
+var item_db = result.database;
+
+
+    if account plan free
+        search for free accounts
+            if 0:
+                render app with everything default ==> item_default
+            if > 0
+                render app with free details and premium default ==> item_db_free
+
+    if account plan premium
+        search for free accounts
+            if 0:
+                search for premium accounts
+                    if 0:
+                        render app with free and premium default ==> [item_default_free] & [item_default_premium]
+                    if > 0:
+                        render app with free default and premium details ==> [item_default_free] & [item_db_premium]
+
+            if > 0:
+                search for premium accounts
+                    if 0:
+                        render app with premium default and free details ==> [item_default_premium] & [item_db_free]
+                    if > 0:
+                        render app with free and premium details ==> [item_db_premium] & [item_db_premium]
+
+
+
+app normal
+app.get("/app", (req, res) => {
+    if (!req.session.username) {
+        res.redirect("/login");
+    } else {
+        connection.query("SELECT * FROM accounts WHERE username = ?", [req.session.username], function (error, result, fields) {
+            let steam_username_free = "None";
+            let steam_status_free = "Inactive";
+            let game1_free = "";
+            let game2_free = "";
+            let game_title_free = "";
+            let checkbox_free = "Disabled";
+            let afk_message_free = "";
+
+            let steam_username_premium = "None";
+            let steam_status_premium = "Inactive";
+            let game1_premium = "";
+            let game2_premium = "";
+            let game_title_premium = "";
+            let checkbox_premium = "Disabled";
+            let afk_message_premium = "";
+
+            account_plan = result[0].plan;
+            steam_timeleft_free = result[0].timeleft_free;
+            steam_timeleft_premium = result[0].timeleft_premium;
+
+            if (account_plan === "Free") {
+                connection.query("SELECT * FROM steam_accounts_free WHERE username = ?", [req.session.username], function (error, result, fields) {
+                    if (result.length === 0) {
+                        if (req.session.loggedin) {
+                            // Output username
+                            res.render("app", { 
+                                alert: req.flash("alert"),
+                                page_name: "App",
+                                account_plan: account_plan,
+                                username: req.session.username,
+    
+                                steam_username_free: steam_username_free,
+                                steam_timeleft_free: steam_timeleft_free,
+                                steam_status_free: steam_status_free,
+                                game1_free: game1_free,
+                                game2_free: game2_free,
+                                checkbox_free: checkbox_free,
+                                game_title_free: game_title_free,
+                                afk_message_free: afk_message_free,
+    
+                                steam_username_premium: steam_username_premium,
+                                steam_timeleft_premium: steam_timeleft_premium,
+                                steam_status_premium: steam_status_premium,
+                                game1_premium: game1_premium,
+                                game2_premium: game2_premium,
+                                checkbox_premium: checkbox_premium,
+                                game_title_premium: game_title_premium,
+                                afk_message_premium: afk_message_premium,
+                            });
+                            res.end()
+                        }
+                    } else {
+                        let steam_username_free = result[0].steam_username;
+                        let steam_status_free = result[0].status;
+                        connection.query("SELECT * FROM steam_settings_free WHERE username = ?", [req.session.username],function (error, result, fields) {
+                            let game1_free = result[0].game1;
+                            let game2_free = result[0].game2;
+                            let game_title_free = result[0].title;
+                            let checkbox_free = result[0].afk_message_status;
+                            let afk_message_free = result[0].afk_message;
+                            res.render("app", {
+                                alert: req.flash("alert"),
+                                page_name: "App",
+                                account_plan: account_plan,
+                                username: req.session.username,
+
+                                steam_username_free: steam_username_free,
+                                steam_timeleft_free: steam_timeleft_free,
+                                steam_status_free: steam_status_free,
+                                game1_free: game1_free,
+                                game2_free: game2_free,
+                                checkbox_free: checkbox_free,
+                                game_title_free: game_title_free,
+                                afk_message_free: afk_message_free,
+    
+                                steam_username_premium: steam_username_premium,
+                                steam_timeleft_premium: steam_timeleft_premium,
+                                steam_status_premium: steam_status_premium,
+                                game1_premium: game1_premium,
+                                game2_premium: game2_premium,
+                                checkbox_premium: checkbox_premium,
+                                game_title_premium: game_title_premium,
+                                afk_message_premium: afk_message_premium,
+                            });
+                        res.end();
+                        });
+                    }
+                });
+            } else {
+                connection.query("SELECT * FROM steam_accounts_free WHERE username = ?", [req.session.username], function (error, result, fields) {
+                    if (result.length === 0) {
+                        connection.query("SELECT * FROM steam_accounts_premium WHERE username = ?", [req.session.username], function (error, result, fields) {
+                            if (result.length === 0) {
+                               //render app with everything default
+                                if (req.session.loggedin) {
+                                    res.render("app", { 
+                                        alert: req.flash("alert"),
+                                        page_name: "App",
+                                        account_plan: account_plan,
+                                        username: req.session.username,
+            
+                                        steam_username_free: steam_username_free,
+                                        steam_timeleft_free: steam_timeleft_free,
+                                        steam_status_free: steam_status_free,
+                                        game1_free: game1_free,
+                                        game2_free: game2_free,
+                                        checkbox_free: checkbox_free,
+                                        game_title_free: game_title_free,
+                                        afk_message_free: afk_message_free,
+            
+                                        steam_username_premium: steam_username_premium,
+                                        steam_timeleft_premium: steam_timeleft_premium,
+                                        steam_status_premium: steam_status_premium,
+                                        game1_premium: game1_premium,
+                                        game2_premium: game2_premium,
+                                        checkbox_premium: checkbox_premium,
+                                        game_title_premium: game_title_premium,
+                                        afk_message_premium: afk_message_premium,
+                                    });
+                                    res.end()
+                                }
+                            } else {
+
+                                let steam_username_premium = result[0].steam_username;
+                                let steam_status_premium = result[0].status;
+                                connection.query("SELECT * FROM steam_settings_premium WHERE username = ?", [req.session.username],function (error, result, fields) {
+                                    let game1_premium = result[0].game1;
+                                    let game2_premium = result[0].game2;
+                                    let game_title_premium = result[0].title;
+                                    let checkbox_premium = result[0].afk_message_status;
+                                    let afk_message_premium = result[0].afk_message;
+                                    
+                                    //render app with free default
+                                    if (req.session.loggedin) {
+                                        res.render("app", { 
+                                            alert: req.flash("alert"),
+                                            page_name: "App",
+                                            account_plan: account_plan,
+                                            username: req.session.username,
+                
+                                            steam_username_free: steam_username_free,
+                                            steam_timeleft_free: steam_timeleft_free,
+                                            steam_status_free: steam_status_free,
+                                            game1_free: game1_free,
+                                            game2_free: game2_free,
+                                            checkbox_free: checkbox_free,
+                                            game_title_free: game_title_free,
+                                            afk_message_free: afk_message_free,
+                
+                                            steam_username_premium: steam_username_premium,
+                                            steam_timeleft_premium: steam_timeleft_premium,
+                                            steam_status_premium: steam_status_premium,
+                                            game1_premium: game1_premium,
+                                            game2_premium: game2_premium,
+                                            checkbox_premium: checkbox_premium,
+                                            game_title_premium: game_title_premium,
+                                            afk_message_premium: afk_message_premium,
+                                        });
+                                        res.end()
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        let steam_username_free = result[0].steam_username;
+                        let steam_status_free = result[0].status;
+                        connection.query("SELECT * FROM steam_settings_free WHERE username = ?", [req.session.username],function (error, result, fields) {
+                            let game1_free = result[0].game1;
+                            let game2_free = result[0].game2;
+                            let game_title_free = result[0].title;
+                            let checkbox_free = result[0].afk_message_status;
+                            let afk_message_free = result[0].afk_message;
+
+                            connection.query("SELECT * FROM steam_accounts_premium WHERE username = ?", [req.session.username], function (error, result, fields) {
+                                if (result.length === 0) {
+                                    if (req.session.loggedin) {
+                                        res.render("app", { 
+                                            alert: req.flash("alert"),
+                                            page_name: "App",
+                                            account_plan: account_plan,
+                                            username: req.session.username,
+                
+                                            steam_username_free: steam_username_free,
+                                            steam_timeleft_free: steam_timeleft_free,
+                                            steam_status_free: steam_status_free,
+                                            game1_free: game1_free,
+                                            game2_free: game2_free,
+                                            checkbox_free: checkbox_free,
+                                            game_title_free: game_title_free,
+                                            afk_message_free: afk_message_free,
+                
+                                            steam_username_premium: steam_username_premium,
+                                            steam_timeleft_premium: steam_timeleft_premium,
+                                            steam_status_premium: steam_status_premium,
+                                            game1_premium: game1_premium,
+                                            game2_premium: game2_premium,
+                                            checkbox_premium: checkbox_premium,
+                                            game_title_premium: game_title_premium,
+                                            afk_message_premium: afk_message_premium,
+                                        });
+                                        res.end()
+                                    }
+                                } else {
+                                    let steam_username_premium = result[0].steam_username;
+                                    let steam_status_premium = result[0].status;
+                                    connection.query("SELECT * FROM steam_settings_premium WHERE username = ?", [req.session.username],function (error, result, fields) {
+                                        let game1_premium = result[0].game1;
+                                        let game2_premium = result[0].game2;
+                                        let game_title_premium = result[0].title;
+                                        let checkbox_premium = result[0].afk_message_status;
+                                        let afk_message_premium = result[0].afk_message;
+                                        //render app with everything db
+                                        if (req.session.loggedin) {
+                                            res.render("app", { 
+                                                alert: req.flash("alert"),
+                                                page_name: "App",
+                                                account_plan: account_plan,
+                                                username: req.session.username,
+                    
+                                                steam_username_free: steam_username_free,
+                                                steam_timeleft_free: steam_timeleft_free,
+                                                steam_status_free: steam_status_free,
+                                                game1_free: game1_free,
+                                                game2_free: game2_free,
+                                                checkbox_free: checkbox_free,
+                                                game_title_free: game_title_free,
+                                                afk_message_free: afk_message_free,
+                    
+                                                steam_username_premium: steam_username_premium,
+                                                steam_timeleft_premium: steam_timeleft_premium,
+                                                steam_status_premium: steam_status_premium,
+                                                game1_premium: game1_premium,
+                                                game2_premium: game2_premium,
+                                                checkbox_premium: checkbox_premium,
+                                                game_title_premium: game_title_premium,
+                                                afk_message_premium: afk_message_premium,
+                                            });
+                                            res.end()
+                                        }
+                                    });
+                                }
+                            });  
+                        });
+                    }
+                });
+            }
+        });
+    }
+});

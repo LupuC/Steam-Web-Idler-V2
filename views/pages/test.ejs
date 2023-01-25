@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-bluenew ">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="bg-bluenew">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <div class="container is-fluid has-text-centered" style="margin-top:28vh; margin-bottom: 150px">
+        <form action="/test/add_free_account" method="post"><button>Add free account</button></form>
+        <form action="/test/remove_free_account" method="post"><button>Remove free account</button></form>
+        <div><%= steam_username %></div>
+    </div>
+    <div class="container is-fluid has-text-centered" style="margin-top:28vh; margin-bottom: 150px">
+        <form action="/test/add_premium_account" method="post"><button>Add premium account</button></form>
+        <form action="/test/remove_premium_account" method="post"><button>Remove premium account</button></form>
+        <div><%= steam_username_premium %></div>
+    </div>
+  </main>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

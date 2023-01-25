@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-bluenew ">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="bg-bluenew">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <div class="container" style="margin-top: 150px;">
+        <form action="/api/register" method="post">
+            <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" placeholder="Username" name="username" id="username">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="email" placeholder="Email" name="email" id="email" required>
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+
+
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="password" placeholder="Password" name="password" id="password">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field">
+                <p class="control">
+                  <button class="button is-success">
+                    Login
+                  </button>
+                </p>
+              </div>
+        </form>
+    </div>
+  </main>
+
+
+
+
+  <% if(alert == "email_exist"){ %>
+    <script>  
+    const email_exist = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    email_exist.fire({
+      title: 'This email is already used!',
+      icon: 'error'
+    })
+    </script>
+  
+  <% } else if(alert == "no_email"){ %>
+    <script>  
+      const no_email = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+  
+      no_email.fire({
+        title: 'Please enter a valid email!',
+        icon: 'success'
+      })
+      </script>
+  <% } else if(alert == "user_exist"){ %>
+    <script>  
+      const user_exist = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+  
+      user_exist.fire({
+        title: 'This user already exist!',
+        icon: 'error'
+      })
+      </script>
+  <% } else if(alert == "no_user_and_password"){ %>
+    <script>  
+      const no_user_and_password = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+  
+      no_user_and_password.fire({
+        title: 'Please enter a username and a password!',
+        icon: 'error'
+      })
+      </script>
+    <% } else { %>
+
+  <% } %>
+
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<div class="container is-fluid-2 animate__animated animate__fadeIn">
+  <nav class="navbar bg-bluenew" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand mt-4">
+      <a class="navbar-item color-blue" href="/">
+        <i class="fa-solid fa-hourglass-end fa-2xl "  style="text-shadow: 4px 4px 8px #0000004f;" aria-controls="#picker-editor"></i>
+      </a>
+
+      <a role="button" class="navbar-burger mt-4" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+    <div id="navbarBasicExample" class="navbar-menu mt-4">
+      <div class="navbar-start has-text-weight-medium ">
+        <a <% if (page_name === 'index') { %> class="navbar-item color-blue text-shadow-1 inter-font" <%} else { %> class="navbar-item color-white text-shadow-1 inter-font navbar-item-custom" <% } %> href="/">
+          Home
+        </a>
+        <a <% if (page_name === 'features') { %> class="navbar-item color-blue text-shadow-1 inter-font" <%} else { %> class="navbar-item color-white text-shadow-1 inter-font" <% } %> href="/features">
+          Features
+        </a>
+        <a <% if (page_name === 'pricing') { %> class="navbar-item color-blue text-shadow-1 inter-font" <%} else { %> class="navbar-item color-white text-shadow-1 inter-font" <% } %> href="/pricing">
+          Pricing
+        </a>
+        <a <% if (page_name === 'support') { %> class="navbar-item color-blue text-shadow-1 inter-font" <%} else { %> class="navbar-item color-white text-shadow-1 inter-font" <% } %> href="/support">
+          Support
+        </a>
+      </div>
+
+      <%if (!username){%>
+        <div class="navbar-end mt-4">
+          <div class="navbar-item">
+              <a class="color-white mr-4 text-shadow-1 inter-font navbar-item-custom" href="/login">
+                  <strong>Login</strong>
+                </a>
+            <div class="">
+              <a class="button-join bg-blue color-white inter-font" style="border-radius: 12px; box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);" href="/register">
+                  <strong>Join</strong>
+              </a>
+            </div>
+          </div>
+        </div>
+     <%}else if(username && page_name === "App"){%>
+      <div class="navbar-end mt-4">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link color-white text-shadow-1 inter-font navbar-item-custom">
+            Welcome back, <span class="color-blue mr-3">
+              <%= username %>
+            </span>
+            <i class="fa-solid fa-chevron-down color-blue" ></i>
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="/app/settings">
+              <i class="fa-solid fa-gear"></i>
+              &nbsp;Settings
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/api/logout">
+              <i class="fa-solid fa-right-from-bracket"></i>
+              &nbsp;</i> Logout
+            </a>
+
+          </div>
+        </div>
+      </div>
+      <%}else{%>
+        <div class="navbar-end mt-4">
+          <div class="">
+              <a class="button-join bg-blue color-white inter-font" style="border-radius: 12px; box-shadow: 8px 8px 4px rgba(0, 0, 0, 0.25);" href="/app">
+                  <strong>Panel</strong>
+              </a>
+            </div>
+          </div>
+       <%}%>
+      
+    </div>
+  </nav>
+</div>

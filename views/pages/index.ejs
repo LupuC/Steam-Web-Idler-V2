@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-bluenew ">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="bg-bluenew">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <div class="container is-fluid" style="margin-left: 5%">
+      <div class="columns">
+        <div class="column is-three-fifths margin-top-30vh" >
+          <div class="hero-title color-white animate__animated animate__fadeInDown" style="text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);">
+            Boost your hours on
+            <span class="color-grey bg-white">Steam</span>
+          </div>
+          <div class="hero-subtitle color-white has-text-centered text-shadow-1 mt-5 animate__animated animate__fadeInUp">
+            Cheap, fast & safe boosting service.
+            <br>
+            Easy to set-up, easier to run!
+          </div>
+          <div class="has-text-centered animate__animated animate__fadeInUp" style="margin-top: 60px;">
+            <a href="" class="hero-button">TRY NOW!</a>
+          </div>
+        </div>
+        <div class="column" style="margin-top: 25vh;">
+
+          <div class="columns">
+            <div class="column">
+              <figure class="image custom-img">
+                <img class="animate__animated animate__fadeInLeft" src="img/free_account.svg" style="border-radius: 28px; filter: drop-shadow(20px 20px 4px rgba(0, 0, 0, 0.25));">
+              </figure>
+            </div>
+
+            <div class="column">
+              <figure class="image custom-img2">
+                <img class="animate__animated animate__fadeInRight" src="img/premium_account.svg" style="border-radius: 28px; filter: drop-shadow(20px 20px 4px rgba(0, 0, 0, 0.25));">
+              </figure>
+
+            </div>
+          </div>
+        
+
+
+        </div>
+      </div>
+  </main>
+  <% if(alert == "logout_success"){ %>
+    <script>  
+    const emptyAfkError = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    emptyAfkError.fire({
+      title: 'Logged off successfully!',
+      icon: 'error'
+    })
+    </script>
+  
+  <% } %>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>

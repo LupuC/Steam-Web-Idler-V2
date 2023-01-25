@@ -1,0 +1,355 @@
+@import "../css/bulma.css";
+
+:root {
+    --blue: #8F00FF;
+    --bluedark: #00152b;
+    --bluedark2: #001123;
+    --bluenew: #2D2A3D;
+    --white: white;
+    --bulmagrey: #4a4a4a;
+    --green: green;
+    --grey: #363636;
+  }
+body{
+    width: 100%;
+    height: 100vh;
+    background-color: var(--bluedark);
+    overflow-x: hidden;
+}
+html{
+    background-color: var(--bluedark);
+    overflow-x: hidden;
+}
+
+.color-blue {
+    color: var(--blue);
+  }
+
+.color-white{
+    color: var(--white);
+  }
+.color-bluedark{
+    color: var(--bluedark);
+}
+.color-bluenew{
+    color: var(--bluenew);
+}
+.color-grey{
+    color: var(--grey);
+}
+
+.bg-blue {
+    background-color: var(--blue);
+  }
+
+.bg-white{
+    background-color: var(--white);
+  }
+.bg-bluedark {
+    background-color: var(--bluedark);
+}
+.bg-bluenew {
+    background-color: var(--bluenew);
+}
+.bg-grey{
+    background-color: var(--grey);
+}
+
+.custom-img{
+    width: 340px;
+    position: absolute;
+    top: 230px;
+    transform: rotate(15deg);
+    right: 480px;
+    z-index: 100;
+    
+}
+.custom-img2{
+    width: 390px;
+    position: absolute;
+    top: 150px;
+    right: 140px;
+    transform: rotate(352deg);
+}
+
+.text-shadow-1{
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.inter-font {
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 24px;
+line-height: 29px;
+}
+.margin-top-30vh{
+    margin-top: 30vh;
+}
+.margin-top-45vh{
+    margin-top: 45vh;
+}
+.margin-top-20vh{
+    margin-top: 20vh;
+}
+.margin-top-15vh{
+    margin-top: 15vh;
+}
+.margin-top-10vh{
+    margin-top: 10vh;
+}
+.margin-top-5bh{
+    margin-top: 5vh;
+}
+
+.is-fluid-2{
+    max-width: none !important;
+    padding-left: 256px;
+    padding-right: 256px;
+    width: 100%;
+}
+
+@media (max-width:1380px) {
+    .is-fluid-2{
+        max-width: none !important;
+        padding-left: 0;
+        padding-right: 0;
+        width: 100%;
+
+    }
+    .margin-top-30vh{
+        margin-top: 10vh;
+    }
+    .custom-img{
+        width: 340px;
+        position: absolute;
+        top: 500px;
+        transform: rotate(15deg);
+        right: 480px;
+        z-index: 100;
+        
+    }
+    .custom-img2{
+        width: 390px;
+        position: absolute;
+        top: 340px;
+        right: 140px;
+        transform: rotate(352deg);
+    }
+}
+
+@media (max-width:1730px){
+    .custom-img{
+        width: 340px;
+        position: absolute;
+        top: 400px;
+        transform: rotate(15deg);
+        right: 480px;
+        z-index: 100;
+        
+    }
+    .custom-img2{
+        width: 390px;
+        position: absolute;
+        top: 240px;
+        right: 140px;
+        transform: rotate(352deg);
+    }
+}
+
+@media (max-width:1240px){
+    .custom-img{
+        width: 340px;
+        position: absolute;
+        top: 600px;
+        transform: rotate(15deg);
+        right: 480px;
+        z-index: 100;
+        
+    }
+    .custom-img2{
+        width: 390px;
+        position: absolute;
+        top: 440px;
+        right: 140px;
+        transform: rotate(352deg);
+    }
+}
+
+@media (max-width:960px){
+    .column.is-three-fifths, .column.is-three-fifths-tablet {
+        flex: none;
+        z-index: 99999999;
+        position: relative;
+        
+    }
+    .has-text-centered {
+        text-align: left !important;
+    }
+}
+
+@media (max-width:1024px) and (min-width: 100px){
+    .margin-top-30vh{
+        margin-top: 5vh;
+    }
+}
+@media (max-width:770px){
+    .custom-img{
+        width: 340px;
+        position: absolute;
+        top: 600px;
+        transform: rotate(15deg);
+        right: 225px;
+        z-index: 100;
+        
+    }
+    .custom-img2{
+        width: 390px;
+        position: absolute;
+        top: 440px;
+        right: -40px;
+        transform: rotate(352deg);
+    }
+    .hero-title{
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 64px;
+        line-height: 77px;
+        z-index: 9999;
+        }
+        
+        .hero-subtitle{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 29px;
+            z-index: 9999;
+        }
+        
+        .hero-button{
+            background-color: var(--blue);
+            border-width: 1px;
+            color: #ffffff;
+            cursor: pointer;
+            justify-content: center;
+            padding-bottom: 18px;
+            padding-left: 1.5em;
+            padding-right: 1.5em;
+            padding-top: 18px;
+            text-align: center;
+            white-space: nowrap;
+        
+            box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 28px;
+        
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 36px;
+            line-height: 44px;
+        
+            z-index: 9999;
+        }
+    
+}
+
+.navbar-item-custom{
+    color:White;
+}
+.navbar-item-custom:hover{
+    color: var(--blue);
+}
+
+.hero-title{
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 64px;
+line-height: 77px;
+z-index: 9999;
+}
+
+.hero-subtitle{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+    z-index: 9999;
+}
+
+.hero-button{
+    background-color: var(--blue);
+    border-width: 1px;
+    color: #ffffff;
+    cursor: pointer;
+    justify-content: center;
+    padding-bottom: 18px;
+    padding-left: 1.5em;
+    padding-right: 1.5em;
+    padding-top: 18px;
+    text-align: center;
+    white-space: nowrap;
+
+    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 28px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 44px;
+
+    z-index: 9999;
+}
+
+.test:hover {
+    background-color: var(--bluedark);
+}
+
+.logout-button:hover {
+    cursor: pointer;
+    color: black;
+}
+
+.steam-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-start {
+    cursor: pointer;
+    color: var(--blue);
+    font-size: 20px;
+}
+.button-start:hover {
+    cursor: pointer;
+    color: #4a4a4a;
+}
+
+.button-stop {
+    cursor: pointer;
+    color: var(--green);
+    font-size: 20px;
+}
+.button-stop:hover {
+    cursor: pointer;
+    color: #4a4a4a;
+}
+
+.custom-footer {
+    display: block;
+    background-color: var(--bluedark);
+    margin-top: 13vh;
+}
+
+.button-panel {
+    border: 0;
+    background-color: transparent;
+}
+.button-panel:hover{
+    cursor: pointer;
+}

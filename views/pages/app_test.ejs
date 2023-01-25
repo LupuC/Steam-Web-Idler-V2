@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-bluenew ">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="bg-bluenew">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <section class="hero has-text-centered">
+    <div class="hero-body">
+      <p class="title color-white is-capitalized">
+        Panel
+      </p>
+      <p class="subtitle color-white">
+        Manage your steam accounts
+      </p>
+    </div>
+  </section>
+
+
+  <div class="container mb-5">
+    <div id="grid" class="columns">
+      <div class="column" style="display: block;">
+        <div class=" has-text-centered">
+          <div class="card">
+            <header class="card-header has-text-centered">
+              <p class="card-header-title mt-3 mb-3 steam-icon">
+                <i class="fa-brands fa-steam fa-lg"></i> &nbsp; Free account
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <p class="card-text">Steam account: <%=variables.steamUsernameFree %>
+                </p>
+              </div>
+              <div class="content">
+                <%if (variables.statusFree == "Inactive" ){ %>
+                <p class="card-text">Status: <span style="color: rgb(231, 66, 66);">Inactive</span></p>
+                <% }else if (variables.statusFree =="Starting..." ){%>
+                <p class="card-text">Status: <span style="color: #25b032 !important;">Starting...</span></p>
+                <% }else if (variables.statusFree =="Steamguard" ){%>
+                  <p class="card-text">Status: <span style="color: #f00000 !important;">Steam Guard Required</span></p>
+                  <% }else if (variables.statusFree =="Active" ){%>
+                <p class="card-text">Status: <span style="color: #b29a36 !important;">Active</span></p>
+                <% } %>
+              </div>
+              <div class="content">
+                Timeleft: <%= Math.round(steamTimeleftFree/60) %> hours
+                <!-- Soon -->
+              </div>
+              <div class="content">
+                Games: 0/0
+                <!-- Soon -->
+              </div>
+            </div>
+            <hr class="navbar-divider">
+            <footer class="columns ">
+              <button class="column button-panel">
+                  <a href="#" class="test1"><i class="fa-solid fa-triangle-exclamation fa-xl"></i></a>
+                  <br>
+                  Errors
+              </button>
+              <button class="column button-panel js-modal-trigger2" data-target="modal-js-example2">
+                  <a href="#" class="test1"><i class="fa-solid fa-gear fa-xl"></i></a>
+                  <br>
+                  Settings
+              </button>
+              <button class="column button-panel js-modal-trigger" data-target="modal-js-example">
+                  <a href="#" class="test1"><i class="fa-solid fa-user-plus fa-xl"></i></a>
+                  <br>
+                  Account
+              </button>
+              <button class="column button-panel">
+                  <a href="#" class="test1"><i class="fa-solid fa-envelope fa-xl"></i></i></a>
+                  <br>
+                  Steamguard
+              </button>
+            </footer>
+            <footer class="columns ">
+              <a href="#" class="column">
+                <% if(variables.statusFree==="Inactive" || variables.statusFree==="Steamguard" || variables.statusFree==="Starting..."){ %>
+                <form action="/app/start/free" method="post">
+                  <button type="submit" class="button-start" style="background-color: transparent;border: 0px;"><i class="fa-solid fa-circle-play fa-2xl"></i></button>
+                </form>
+                <% } else { %>
+                <form action="/app/stop/free" method="post">
+                  <button type="submit" class="button-stop" style="background-color: transparent;border: 0px;"><i class="fa-solid fa-circle-pause fa-2xl"></i></button>
+                </form>
+                <% } %>
+              </a>
+            </footer>
+          </div>
+        </div>
+      </div>
+      <%if (userType === "Free" ) { 
+        %>
+      <div class="column" style="display: block;">
+        <div class=" has-text-centered">
+          <div class="card">
+            <header class="card-header has-text-centered">
+              <p class="card-header-title mt-3 mb-3 steam-icon">
+                <i class="fa-brands fa-steam fa-lg"></i> &nbsp; Premium account
+              </p>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                Buy premium access <a href="#" class="is-link">here</a>!
+              </div>
+            </div>
+            <footer class="columns ">
+              <div class="content">
+                <a href="">&nbsp;</a>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </div>
+      <%}else if (userType==="Premium" ) { %>
+      
+      <div class="column" style="display: block;">
+            <div class=" has-text-centered">
+              <div class="card">
+                <header class="card-header has-text-centered">
+                  <p class="card-header-title mt-3 mb-3 steam-icon">
+                    <i class="fa-brands fa-steam fa-lg"></i> &nbsp; Premium account
+                  </p>
+                </header>
+                <div class="card-content">
+                  <div class="content">
+                    <p class="card-text">Steam account: <%=variables.steamUsernamePremium %>
+                    </p>
+                  </div>
+                  <div class="content">
+                    <%if (variables.statusPremium =="Inactive" ){ %>
+                    <p class="card-text">Status: <span style="color: rgb(231, 66, 66);">Inactive</span></p>
+                    <% }else if (variables.statusPremium =="Starting..." ){%>
+                    <p class="card-text">Status: <span style="color: #b29a36 !important;">Starting...</span></p>
+                    <% }else if (variables.statusPremium =="Active" ){%>
+                    <p class="card-text">Status: <span style="color: #b29a36 !important;">Active</span></p>
+                    <% } %>
+                  </div>
+                  <div class="content">
+                    Timeleft: <%= Math.round(steamTimeleftPremium/60) %> hours
+                    <!-- Soon -->
+                  </div>
+                  <div class="content">
+                    Games: 0/0
+                    <!-- Soon -->
+                  </div>
+                </div>
+                <hr class="navbar-divider">
+                <footer class="columns ">
+                  <button class="column button-panel">
+                      <a href="#" class="test1"><i class="fa-solid fa-triangle-exclamation fa-xl"></i></a>
+                      <br>
+                      Errors
+                  </button>
+                  <button class="column button-panel js-modal-trigger4" data-target="modal-js-example4">
+                      <a href="#" class="test1"><i class="fa-solid fa-gear fa-xl"></i></a>
+                      <br>
+                      Settings
+                  </button>
+                  <button class="column button-panel js-modal-trigger3" data-target="modal-js-example3">
+                      <a href="#" class="test1"><i class="fa-solid fa-user-plus fa-xl"></i></a>
+                      <br>
+                      Account
+                  </button>
+                  <button class="column button-panel">
+                      <a href="#" class="test1"><i class="fa-solid fa-envelope fa-xl"></i></i></a>
+                      <br>
+                      Steamguard
+                  </button>
+                </footer>
+                <footer class="columns ">
+                  <a href="#" class="column">
+                    <% if(variables.statusPremium==="Inactive" ){ %>
+                    <form action="/app/start_premium" method="post">
+                      <button type="submit" class="button-start" style="background-color: transparent;border: 0px;"><i class="fa-solid fa-circle-play fa-2xl"></i></button>
+                    </form>
+
+                    <% } else{ %>
+                    <form action="/app/stop_premium" method="post">
+                      <button type="submit" class="button-stop" style="background-color: transparent;border: 0px;"><i class="fa-solid fa-circle-pause fa-2xl"></i></button>
+                    </form>
+                    <% } %>
+                  </a>
+                </footer>
+              </div>
+            </div>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="container">
+    <form action="/app/start/free/steamguard" method="post">
+      <div class="field">
+        <label class=" label color-white">
+          Add steamguard
+        </label>
+        <div class="control">
+          <input class="input" type="text" name="SteamGuard" 
+          placeholder="Add steamguard" value="" 
+          id="SteamGuard">
+        </div>
+      </div>
+      <button class="button is-primary ">Add</button>
+    </form>
+    
+    <div class="container">
+      <form action="/debug/who_idle" method="post">
+        <div class="field">
+          <label class=" label color-white">
+            Check who is idling?
+          </label>
+        </div>
+        <button class="button is-primary ">Check</button>
+      </form>
+  </div>
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+
+  <!-- Start of modals -->
+  <div id="modal-js-example" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <p class="title">Add free steam account...</p>
+        <form action="/app/add_steamAccounts_Free" method="post">
+            <div class="field">
+              <label class="label">Steam Username</label>
+              <div class="control">
+                <input class="input" type="text" name="SteamUsername" 
+                placeholder="Steam Username" 
+                id="SteamUsername" <% if(variables.steamUsernameFree === "None"){ %> value="" <% } else{ %>   value=<%=variables.steamUsernameFree %> readonly <% } %> required>
+              </div>
+            </div>
+          
+            <div class="field">
+              <label class="label">Steam Password</label>
+              <div class="control">
+                <input class="input" type="password" name="SteamPassword" placeholder="Steam Password" id="SteamPassword" required>
+              </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Shared Secret (leave empty if none)</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="********">
+                </div>
+            </div>
+            <% if(variables.steamUsernameFree === "None"){ %>
+                <button class="button is-primary">Add account</button>
+                <% } else{ %>
+                <% } %>
+          </form>
+          <% if(variables.steamUsernameFree === "None"){ %>
+            <% } else{ %>  
+                <form class="remove_account_form mt-3" action="/app/remove_steamAccounts_Free" method="post">
+                    <button class="button is-danger">Remove account</button>
+                </form>
+            <% } %>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+  <!-- -End of free steam account add modal -->
+
+  <div id="modal-js-example2" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <p class="title">Idler settings</p>
+        <form id="saveSettings" action="/app/save_settings_free" method="post">
+
+            <div class="field">
+              <label class="checkbox label">
+                <input type="checkbox" checked disabled>
+                Custom Title
+              </label>
+              <div class="control">
+                <input class="input" type="text" name="CustomTitle" 
+                placeholder="Type custom in-game title..." value="MyHourBost.com ~ Free idling service" 
+                id="CustomTitle" readonly>
+              </div>
+            </div>
+          
+            <div class="field mt-5">
+              <label class="checkbox label">
+
+                <% if(variables.checkboxFree === "Enabled"){ %>
+                  <input type="checkbox" name="checkbox" id="checkbox" checked="true" value="true">
+                <% } else{ %>
+                  <input type="checkbox" name="checkbox" id="checkbox">
+                <% } %>
+
+                Auto Chat Responder
+              </label>
+              <p class="control has-icons-left">
+                <input class="input" type="text" name="afk_msg" id="afk_msg" placeholder="Type custom chat responder message..." style="padding-left: 10.5em;"
+                value="<%= variables.afkMessageFree %>"
+                >
+                <span class="icon is-small is-left " style="
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                background-color: #dfdfdf;
+                width: auto;
+                color: #363636;
+                ">
+                  [MyHourBoost.com]
+                </span>
+              </p>
+              </div>
+              <button class="button is-primary mt-5">Save settings</button>
+            </form>
+
+              <form id="addGames" action="/app/add_idler_game_1" method="post" class="mb-5"> </form>
+                <label class="label mt-5">Games to idle (soon)</label>
+                
+                <div class="field has-addons">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="e.g. 730">
+                  </div>
+                  <div class="control">
+                    <button class="button is-info" form="#" disabled>
+                      Add
+                    </button>
+                  </div>
+                </div>
+
+              
+                
+              <div class="control mt-5">
+                Game 1: <%= variables.game1Free %> - Counter-Strike: Global Offensive
+                <br>
+                Game 2: <%= variables.game2Free %> - Team Fortress 2
+              </div>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+  <!-- -End of free steam account settings modal -->
+
+
+   <!-- Start of modals -->
+   <div id="modal-js-example3" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <p class="title">Add premium steam account...</p>
+        <form action="/app/add_steam_account_premium" method="post">
+            <div class="field">
+              <label class="label">Steam Username</label>
+              <div class="control">
+                <input class="input" type="text" name="SteamUsernamePremium" 
+                placeholder="Steam Username" 
+                id="SteamUsernamePremium" <% if(variables.steamUsernamePremium === "None"){ %> value="" <% } else{ %>   value=<%=variables.steamUsernamePremium %> readonly <% } %> required>
+              </div>
+            </div>
+          
+            <div class="field">
+              <label class="label">Steam Password</label>
+              <div class="control">
+                <input class="input" type="password" name="SteamPasswordPremium" placeholder="Steam Password" id="SteamPasswordPremium" required>
+              </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Shared Secret (leave empty if none)</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="********">
+                </div>
+            </div>
+            <% if(variables.steamUsernamePremium === "None"){ %>
+                <button class="button is-primary">Add account</button>
+                <% } else{ %>
+                <% } %>
+          </form>
+          <% if(variables.steamUsernamePremium === "None"){ %>
+            <% } else{ %>  
+                <form class="remove_account_form mt-3" action="/app/remove_steam_account_premium" method="post">
+                    <button class="button is-danger">Remove account</button>
+                </form>
+            <% } %>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+  <!-- -End of premium steam account add modal -->
+
+  <div id="modal-js-example4" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <div class="box">
+        <p class="title">Idler settings</p>
+        <form id="saveSettings" action="/app/save_settings_premium" method="post">
+
+            <div class="field">
+              <label class="checkbox label">
+                <input type="checkbox" checked>
+                Custom Title
+              </label>
+              <div class="control">
+                <input class="input" type="text" name="CustomTitle" 
+                placeholder="Type custom in-game title..." value="MyHourBost.com ~ Free idling service" 
+                id="CustomTitle">
+              </div>
+            </div>
+          
+            <div class="field mt-5">
+              <label class="checkbox label">
+
+                <% if(variables.checkboxPremium=== "Enabled"){ %>
+                  <input type="checkbox" name="checkbox" id="checkbox" checked="true" value="true">
+                <% } else{ %>
+                  <input type="checkbox" name="checkbox" id="checkbox">
+                <% } %>
+
+                Auto Chat Responder
+              </label>
+              <p class="control">
+                <input class="input" type="text" name="afk_msg" id="afk_msg" placeholder="Type custom chat responder message..."
+                value="<%= variables.afkMessagePremium %>"
+                >
+                
+              </p>
+              </div>
+              <button class="button is-primary mt-5">Save settings</button>
+            </form>
+
+              <form id="addGames" action="/app/add_idler_game_1" method="post" class="mb-5"> </form>
+                <label class="label mt-5">Games to idle (soon)</label>
+                
+                <div class="field has-addons">
+                  <div class="control">
+                    <input class="input" type="text" placeholder="e.g. 730">
+                  </div>
+                  <div class="control">
+                    <button class="button is-info" form="#" disabled>
+                      Add
+                    </button>
+                  </div>
+                </div>
+
+              
+                
+              <div class="control mt-5">
+                Game 1: <%= variables.game1Premium %> - Counter-Strike: Global Offensive
+                <br>
+                Game 2: <%= variables.game2Premium %> - Team Fortress 2
+              </div>
+      </div>
+    </div>
+    <button class="modal-close is-large" aria-label="close"></button>
+  </div>
+  <!-- -End of premium steam account settings modal --> 
+
+  
+  <% if(alert == "free_steam_account_added"){ %>
+    <script>  
+    const free_steam_account_added = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    free_steam_account_added.fire({
+      title: 'Account addedd successfully to free plan!',
+      icon: 'success'
+    })
+    </script>
+  <% } else if(alert == "no_account_added"){%>
+    <script>  
+        const no_account_added = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        no_account_added.fire({
+          title: 'You need to add a steam account!',
+          icon: 'error'
+        })
+        </script>
+  <% } else if(alert == "empty_message"){%>
+    <script>  
+        const empty_message = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        empty_message.fire({
+          title: 'AFK Message cannot be empty!',
+          icon: 'error'
+        })
+        </script>
+  <% } else if(alert == "remove_steamAccounts_Free_success"){%>
+    <script>  
+        const remove_steamAccounts_Free_success = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        remove_steamAccounts_Free_success.fire({
+          title: 'Account removed successfully from free plan!',
+          icon: 'success'
+        })
+        </script>
+  <% } else if(alert == "settings_saved_successfully"){%>
+    <script>  
+        const settings_saved_successfully = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        settings_saved_successfully.fire({
+          title: 'Settings saved succesfully!',
+          icon: 'success'
+        })
+        </script>
+  <% } else if(alert == "steamguard_required"){%>
+    <script>  
+        const need_steamguard = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        need_steamguard.fire({
+          title: 'Steamguard required!',
+          icon: 'info'
+        })
+        </script>
+  <% } else if(alert == "bot_started"){%>
+    <script>  
+        const bot_started = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        bot_started.fire({
+          title: 'Free bot started!',
+          icon: 'success'
+        })
+        </script>
+  <% } else if(alert == "bot_stopped"){%>
+    <script>  
+        const bot_stopped = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+    
+        bot_stopped.fire({
+          title: 'Free bot stopped!',
+          icon: 'success'
+        })
+        </script>
+    <% } else { %>
+
+    <% }%>
+    
+</body>
+<script>
+    // remove error alert
+  document.addEventListener('DOMContentLoaded', () => {
+    (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+      const $notification = $delete.parentNode;
+  
+      $delete.addEventListener('click', () => {
+        $notification.parentNode.removeChild($notification);
+      });
+    });
+  });
+  
+  
+  </script>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-bluenew ">
+
+<head>
+  <%- include('../partials/head'); %>
+</head>
+
+<body class="bg-bluenew">
+
+  <header>
+    <%- include('../partials/header'); %>
+  </header>
+
+  <main>
+    <div class="container" style="margin-top: 150px;">
+        <form action="/api/auth" method="post">
+            <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="text" placeholder="Username" name="username" id="username">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field">
+                <p class="control has-icons-left">
+                  <input class="input" type="password" placeholder="Password" name="password" id="password">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                  </span>
+                </p>
+              </div>
+
+              <div class="field">
+                <p class="control">
+                  <button class="button is-success">
+                    Login
+                  </button>
+                </p>
+              </div>
+        </form>
+    </div>
+  </main>
+
+  <% if(alert == "incorrect_password"){ %>
+    <script>  
+    const emptyAfkError = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+
+    emptyAfkError.fire({
+      title: 'Username or password incorrect!',
+      icon: 'error'
+    })
+    </script>
+  
+  <% } else if(alert == "incorrect_username"){ %>
+    <script>  
+      const successalert = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+  
+      successalert.fire({
+        title: 'Username or password incorrect!',
+        icon: 'success'
+      })
+      </script>
+  <% } else if(alert == "no_user_and_password"){ %>
+    <script>  
+      const noAccount = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+  
+      noAccount.fire({
+        title: 'Please input username and password!',
+        icon: 'error'
+      })
+      </script>
+    <% } else { %>
+
+  <% } %>
+
+  <footer>
+    <%- include('../partials/footer'); %>
+  </footer>
+
+</body>
+
+</html>
