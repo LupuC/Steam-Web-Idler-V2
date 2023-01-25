@@ -3,6 +3,7 @@
 Enhanced Web App for boosing hours on steam (idler). This can be ran as a paid service.
 For more, please contact me.
 
+This isn't the final product, since I'm testing new things (such as MongoDB instead of MySQL)
 
 ## Requirements
 
