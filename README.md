@@ -116,3 +116,8 @@ This new version, comes with:
 - Add settings page to users (change pw, emails etc) - (will be added later, isn't a priority)
 - Add steam settings - Title, Auto responder etc - (added, still working on improvements)
 - Add email confirmation - (will be added later, isn't a priority)
+
+# Screenshots
+![Index](showcase/index.png)
+
+more will be added later.
